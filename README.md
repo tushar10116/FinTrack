@@ -32,3 +32,21 @@ A simple MERN stack expense tracker with:
 ## Notes
 
 The frontend runs on `http://localhost:5173` and the backend runs on `http://localhost:4000` by default.
+
+## Production build & deployment
+
+1. Build the client and start the server (from project root):
+
+```bash
+npm run start:prod
+```
+
+2. Or run build separately and serve with another process manager:
+
+```bash
+npm run build
+cd server
+NODE_ENV=production PORT=4000 npm start
+```
+
+3. Ensure `MONGODB_URI` in `server/.env` points to your production MongoDB.
