@@ -1,0 +1,134 @@
+.app-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+header p {
+  margin: 0.5rem auto 0;
+  color: #555;
+}
+
+.expense-form,
+.expense-list {
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(19, 24, 39, 0.06);
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-row label {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-row input,
+.form-row select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d9e0ec;
+  border-radius: 0.75rem;
+  outline: none;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  border-color: #7c5dfa;
+  box-shadow: 0 0 0 4px rgba(124, 93, 250, 0.08);
+}
+
+.expense-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #7c5dfa;
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.expense-form button:hover {
+  background: #5f45d8;
+}
+
+.expense-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #f0f2f8;
+}
+
+.expense-card:last-child {
+  border-bottom: none;
+}
+
+.expense-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.expense-card p {
+  margin: 0.35rem 0 0;
+  color: #666;
+}
+
+.expense-card strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.expense-card button {
+  border: none;
+  background: #ff6b6b;
+  color: #fff;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.expense-card button:hover {
+  background: #e64141;
+}
+
+.empty-state {
+  padding: 1rem;
+  text-align: center;
+  color: #555;
+}
+
+.alert {
+  margin: 1rem 0;
+  padding: 1rem;
+  color: #721c24;
+  background: #f8d7da;
+  border-radius: 0.75rem;
+}
+
+.loading {
+  text-align: center;
+  color: #555;
+}
