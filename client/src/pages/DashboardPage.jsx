@@ -17,7 +17,7 @@ function DashboardPage() {
 
   const fetchExpenses = async () => {
     try {
-      const response = await api.get('https://fintrack-ph48.onrender.com/api/expenses');
+      const response = await api.get('https://fintrack-ph48.onrender.com/api/expenses')
       setExpenses(response.data);
     } catch (err) {
       setError('Unable to load expenses');
