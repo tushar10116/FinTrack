@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': 'https://fintrack-ph48.onrender.com'
+      '/api': 'https://fintrack-ph48.onrender.com/api/'
     }
   }
 });
