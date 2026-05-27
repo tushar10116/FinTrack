@@ -14,7 +14,7 @@ function RegisterPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.post('https://fintrack-ph48.onrender.com/api/auth/register', { name, email, password });
+      const response = await api.post('/api/auth/register', { name, email, password });
       setUser(response.data.token, response.data.user);
       navigate('/');
     } catch (err) {

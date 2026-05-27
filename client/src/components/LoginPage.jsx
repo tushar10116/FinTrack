@@ -13,7 +13,7 @@ function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.post('https://fintrack-ph48.onrender.com/api/auth/login', { email, password });
+      const response = await api.post('/api/auth/login', { email, password });
       setUser(response.data.token, response.data.user);
       navigate('/');
     } catch (err) {

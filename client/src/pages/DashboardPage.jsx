@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import api from '../serviceshttps://fintrack-ph48.onrender.com/api';
+import api from '../services/api';
 import Dashboard from '../components/Dashboard';
 import ExpenseForm from '../components/ExpenseForm';
 import ExpenseList from '../components/ExpenseList';
@@ -17,7 +17,7 @@ function DashboardPage() {
 
   const fetchExpenses = async () => {
     try {
-      const response = await api.get('https://fintrack-ph48.onrender.com/api/expenses')
+      const response = await api.get('/api/expenses');
       setExpenses(response.data);
     } catch (err) {
       setError('Unable to load expenses');
@@ -28,7 +28,7 @@ function DashboardPage() {
 
   const addExpense = async (expense) => {
     try {
-      const response = await api.post('https://fintrack-ph48.onrender.com/api/expenses', expense);
+      const response = await api.post('/api/expenses', expense);
       setExpenses((current) => [response.data, ...current]);
     } catch (err) {
       setError('Failed to add expense');
@@ -37,7 +37,7 @@ function DashboardPage() {
 
   const removeExpense = async (id) => {
     try {
-      await api.delete(`https://fintrack-ph48.onrender.com/api/expenses/${id}`);
+      await api.delete(`/api/expenses/${id}`);
       setExpenses((current) => current.filter((item) => item._id !== id));
     } catch (err) {
       setError('Failed to delete expense');
