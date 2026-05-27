@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
+import GoogleAuthCallback from './pages/GoogleAuthCallback';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/auth/google/success" element={<GoogleAuthCallback />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

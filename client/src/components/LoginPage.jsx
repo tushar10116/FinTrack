@@ -58,6 +58,20 @@ function LoginPage() {
           </button>
         </form>
 
+        <div className="mt-4 flex items-center gap-3 text-sm text-slate-500">
+          <span className="h-px flex-1 bg-slate-200" />
+          <span>or continue with</span>
+          <span className="h-px flex-1 bg-slate-200" />
+        </div>
+
+        <button
+          type="button"
+          onClick={() => { window.location.href = '/api/auth/google'; }}
+          className="mt-4 w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
+        >
+          Continue with Google
+        </button>
+
         <p className="mt-6 text-center text-sm text-slate-500">
           New here?{' '}
           <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-700">
