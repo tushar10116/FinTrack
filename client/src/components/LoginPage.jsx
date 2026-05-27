@@ -66,7 +66,7 @@ function LoginPage() {
 
         <button
           type="button"
-          onClick={() => { window.location.href = '/api/auth/google'; }}
+          onClick={() => { window.location.href = 'https://fintrack-ph48.onrender.com/api/auth/google'; }}
           className="mt-4 w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
         >
           Continue with Google
