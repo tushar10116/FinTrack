@@ -6,6 +6,7 @@ const path = require('path');
 const compression = require('compression');
 const helmet = require('helmet');
 const expenseRoutes = require('./routes/expenses');
+const authRoutes = require('./routes/auth');
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(compression());
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expenseRoutes);
 
 // Serve client build in production

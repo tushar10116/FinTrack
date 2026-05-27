@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const links = [
   { label: 'Overview', href: '#overview' },
@@ -9,9 +11,16 @@ const links = [
 
 function NavBar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-2xl">
+    <nav className="sticky top-0 z-50 backdrop-blur-2xl bg-white/90 shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-gradient-to-br from-indigo-500 via-violet-600 to-sky-500 text-white shadow-xl shadow-slate-400/10">
@@ -36,44 +45,72 @@ function NavBar() {
         </button>
 
         <div className="hidden items-center gap-6 lg:flex">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-slate-700 transition hover:text-indigo-600"
+          {user &&
+            links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-slate-700 transition hover:text-indigo-600"
+              >
+                {link.label}
+              </a>
+            ))}
+          {user ? (
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-slate-700">{user.name}</span>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-full bg-rose-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rose-600"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-700"
             >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#new-expense"
-            className="rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-700"
-          >
-            Add Expense
-          </a>
+              Login
+            </Link>
+          )}
         </div>
       </div>
 
       {open && (
         <div className="lg:hidden border-t border-slate-200 bg-white/95 px-4 py-4 shadow-sm shadow-slate-200/30">
           <div className="flex flex-col gap-3">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="rounded-3xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+            {user &&
+              links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-3xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            {user ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  handleLogout();
+                }}
+                className="rounded-3xl bg-rose-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-rose-600"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="rounded-3xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
                 onClick={() => setOpen(false)}
               >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#new-expense"
-              className="rounded-3xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
-              onClick={() => setOpen(false)}
-            >
-              Add Expense
-            </a>
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}
