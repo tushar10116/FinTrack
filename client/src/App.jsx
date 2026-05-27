@@ -16,7 +16,7 @@ function App() {
 
   const fetchExpenses = async () => {
     try {
-      const response = await axios.get('/api/expenses');
+      const response = await axios.get('https://fintrack-ph48.onrender.com/api/expenses');
       setExpenses(response.data);
     } catch (err) {
       setError('Unable to load expenses');
@@ -27,7 +27,7 @@ function App() {
 
   const addExpense = async (expense) => {
     try {
-      const response = await axios.post('/api/expenses', expense);
+      const response = await axios.post('https://fintrack-ph48.onrender.com/api/expenses', expense);
       setExpenses((current) => [response.data, ...current]);
     } catch (err) {
       setError('Failed to add expense');
@@ -36,7 +36,7 @@ function App() {
 
   const removeExpense = async (id) => {
     try {
-      await axios.delete(`/api/expenses/${id}`);
+      await axios.delete(`https://fintrack-ph48.onrender.com/api/expenses/${id}`);
       setExpenses((current) => current.filter((item) => item._id !== id));
     } catch (err) {
       setError('Failed to delete expense');
