@@ -1,0 +1,1 @@
+export const ALLOWEDCATEGORIES = ['Food', 'Transportation', 'Utilities', 'Entertainment', 'Healthcare', 'Education', 'Personal Care', 'Miscellaneous'];

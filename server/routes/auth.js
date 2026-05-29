@@ -84,6 +84,7 @@ router.post('/google', async (req, res) => {
       const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET || 'change-this-secret', {
         expiresIn: '7d'
       });
+      
       res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
     });
   } catch (error) {
