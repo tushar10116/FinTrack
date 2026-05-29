@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  // baseURL: 'https://fintrack-ph48.onrender.com',
- baseURL: 'http://localhost:4000',
+   baseURL: 'https://fintrack-ph48.onrender.com',
+ //baseURL: 'http://localhost:4000',
   headers: {
     'Content-Type': 'application/json'
   }
