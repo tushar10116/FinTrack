@@ -5,10 +5,14 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '498243438857-3d4s4hrgd4jc6j4gju4msur2p8lnkj24.apps.googleusercontent.com';
 
 function App() {
   return (
     <AuthProvider>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <Router>
         <div className="min-h-screen bg-slate-100 text-slate-900">
           <NavBar />
@@ -27,6 +31,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      </GoogleOAuthProvider>
     </AuthProvider>
   );
 }

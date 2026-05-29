@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import {GoogleLogin} from '@react-oauth/google';
 import { AuthContext } from '../context/AuthContext';
 
 function LoginPage() {
@@ -18,6 +19,16 @@ function LoginPage() {
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed');
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const response = await api.post('/api/auth/google', { token: credentialResponse.credential });
+      setUser(response.data.token, response.data.user);
+      navigate('/');
+    } catch (err) {
+      setError(err.response?.data?.error || 'Google login failed');
     }
   };
 
@@ -57,6 +68,9 @@ function LoginPage() {
             Log in
           </button>
         </form>
+        <div className="mt-6 flex items-center justify-center">
+          <GoogleLogin onSuccess={handleGoogleSuccess}/>
+          </div>
 
         <p className="mt-6 text-center text-sm text-slate-500">
           New here?{' '}
