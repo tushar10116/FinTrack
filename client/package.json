@@ -1,8 +1,11 @@
 {
   "name": "expense-tracker-client",
   "version": "0.0.1",
+  "homepage": "https://tushar10116.github.io/FinTrack",
   "private": true,
-  "scripts": {
+    "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -20,6 +23,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.40",
     "tailwindcss": "^3.4.5",
     "vite": "^5.4.1"

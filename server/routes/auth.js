@@ -7,6 +7,7 @@ const { OAuth2Client } = require('google-auth-library');
 
 const router = express.Router();
 
+
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -74,29 +75,32 @@ router.get('/me', auth, async (req, res) => {
 router.post('/google', async (req, res) => {
 
   try {
-   await verifyGoogleToken(req.body.token).then(async (payload) => {
-      const { email, name , googleId } = payload;
-      let user = await User.findOne({ email });
+    const { token } = req.body;
+    const payload = await verifyGoogleToken(token);
+    const { email, name, sub: googleId } = payload;
 
-      if (!user) {
-        user = await User.create({ name, email, password: '', googleId });
-      }
-      const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET || 'change-this-secret', {
-        expiresIn: '7d'
-      });
-      
-      res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    let user = await User.findOne({ email });
+    if (!user) {
+      user = await User.create({ name, email, password: '', googleId });
+    }
+
+    const jwtToken = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET || 'change-this-secret', {
+      expiresIn: '7d'
     });
+
+    res.json({ token: jwtToken, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {
     res.status(500).json({ error: error.message || 'Google authentication failed' });
   }
 
 });
 
+
+
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    process.env.GOOGLE_REDIRECT_URI
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI
 )
 
 async function verifyGoogleToken(token) {
@@ -106,6 +110,6 @@ async function verifyGoogleToken(token) {
   })
   const payload = ticket.getPayload()
   return payload;
-  }
+}
 
 module.exports = router;

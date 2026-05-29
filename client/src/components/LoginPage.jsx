@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import {GoogleLogin} from '@react-oauth/google';
 import { AuthContext } from '../context/AuthContext';
+import { LoginButton } from './LoginButton';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -22,15 +23,7 @@ function LoginPage() {
     }
   };
 
-  const handleGoogleSuccess = async (credentialResponse) => {
-    try {
-      const response = await api.post('/api/auth/google', { token: credentialResponse.credential });
-      setUser(response.data.token, response.data.user);
-      navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.error || 'Google login failed');
-    }
-  };
+  
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
@@ -69,7 +62,7 @@ function LoginPage() {
           </button>
         </form>
         <div className="mt-6 flex items-center justify-center">
-          <GoogleLogin onSuccess={handleGoogleSuccess}/>
+         <LoginButton />
           </div>
 
         <p className="mt-6 text-center text-sm text-slate-500">
