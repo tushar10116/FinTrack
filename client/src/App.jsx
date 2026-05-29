@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -13,7 +13,6 @@ function App() {
   return (
     <AuthProvider>
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <Router>
         <div className="min-h-screen bg-slate-100 text-slate-900">
           <NavBar />
           <Routes>
@@ -30,7 +29,6 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
-      </Router>
       </GoogleOAuthProvider>
     </AuthProvider>
   );
